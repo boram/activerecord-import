@@ -27,7 +27,7 @@ module ActiveRecord # :nodoc:
 
       key_values = keys.map { |key| instances.map(&key.to_sym) }
       keys.zip(key_values).each { |key, values| conditions[key] = values }
-      order = keys.map { |key| "`#{key}` ASC" }.join(",")
+      order = Hash[keys.map { |key| [key, :asc] }]
 
       klass = instances.first.class
 
